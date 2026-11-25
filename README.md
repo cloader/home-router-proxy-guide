@@ -2,7 +2,7 @@
 
 > 作者：zeron-G · 实机记录日期：2026-10-05 至 2026-10-10
 >
-> 补充者：@cloader · 实机记录日期：2026-11-25
+> 补充者：[@cloader](https://github.com/cloader) · 实机记录日期：2026-11-25
 
 在原厂固件 1.0.87、已经取得 root SSH 的小米 BE3600 2.5G 上安装 ShellCrash + Mihomo，让连接这台路由器的设备按规则分流：国内直连，国外代理，常用 AI 服务走美国节点，永劫无间 Steam 版相关域名直连。
 
@@ -34,7 +34,7 @@
 - 本实例 `GOMEMLIMIT=12MiB`、`GOGC=30`；它们是调优参数，RSS 实测仍接近 49 MiB。
 - 2026-10-07 确认多次 panic 重启，加入 OOM 政策与核心优先终止防护；当前代理和自动启动已恢复，根因仍待完整日志确认。
 - 2026-10-10 确认核心退出后 DNS / TPROXY 规则残留造成访问失败；补充退出时清理规则与 procd 自动恢复，受控核心退出测试通过。当前代理和自动启动开启，最初退出原因仍待日志确认。
-- 2026-11-25 @cloader 实测官方 Mihomo v1.19.33 / v1.19.34（armv7）在本机型启动解压阶段被 OOM 杀。按 tag v1.19.34 自编译裁剪内核（不带 `with_gvisor`，加 `with_low_memory` 等开关），压缩后 8 MiB，核心 RSS 约 38 MiB，MemAvailable 约 15 MiB；另确认 SSH 固化须先改 `bdata` 并重启、再写入自检脚本。当前代理和自动启动已由 @cloader 在重启后确认可用，长期稳定性未验证。过程见 [低内存部署与裁剪内核](docs/08-custom-core-low-memory-20261125.md)。
+- 2026-11-25 [@cloader](https://github.com/cloader) 实测官方 Mihomo v1.19.33 / v1.19.34（armv7）在本机型启动解压阶段被 OOM 杀。按 tag v1.19.34 自编译裁剪内核（不带 `with_gvisor`，加 `with_low_memory` 等开关），压缩后 8 MiB，核心 RSS 约 38 MiB，MemAvailable 约 15 MiB；另确认 SSH 固化须先改 `bdata` 并重启、再写入自检脚本。当前代理和自动启动已由 [@cloader](https://github.com/cloader) 在重启后确认可用，长期稳定性未验证。过程见 [低内存部署与裁剪内核](docs/08-custom-core-low-memory-20261125.md)。
 
 家用客户端的请求需要经过这台路由器。连到上级路由器的 Wi-Fi、开启手机蜂窝回退、客户端另开 VPN 或使用其他 DNS，都会让检查结果与预期不同。
 

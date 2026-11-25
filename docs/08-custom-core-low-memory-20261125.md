@@ -1,6 +1,6 @@
 # 2026-11-25：低内存 RD15 上的可复现部署与自编译裁剪内核
 
-> 记录者：@cloader · 最后核对：2026-11-25
+> 记录者：[@cloader](https://github.com/cloader) · 最后核对：2026-11-25
 
 ## 实机与前提
 
@@ -85,7 +85,7 @@ GOOS=linux GOARCH=arm GOARM=7 CGO_ENABLED=0
 | 国内 HTTPS | 200，直连 |
 | 国外站点 | 取决于所选节点；香港节点下 YouTube 200、约 0.9 s |
 | OOM 计数 | 裁剪版启动及运行期间未增加 |
-| 重启 | @cloader 确认重启后自启动正常、访问正常 |
+| 重启 | [@cloader](https://github.com/cloader) 确认重启后自启动正常、访问正常 |
 
 ## 仍未验证
 
